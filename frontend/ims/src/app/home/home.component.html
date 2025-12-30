@@ -1,0 +1,68 @@
+<div class="wrapper">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    Product Code
+                </td>
+                <td>
+                    <input type="text" name="productcode" id="pcode" [(ngModel)]="product.productCode">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Product Name
+                </td>
+                <td>
+                    <input type="text" name="productname" id="pname" [(ngModel)]="product.productName">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Category
+                </td>
+                <td>
+                    <input type="text" name="productcategory" id="pcategory" [(ngModel)]="product.category">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Price
+                </td>
+                <td>
+                    <input type="number" name="price" id="price" [(ngModel)]="product.price">
+                </td>
+            </tr>
+            <tr>
+                <td><button (click)="addproduct()">Add Product</button></td>
+                <td> <button (click)="getProducts()">Get Prdoucts</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>List of Products</h1>
+<table border="2px solid balck">
+  <thead>
+    <tr>
+      <th>Product Code</th>
+       <th>Product Name</th>
+        <th>Product Category</th>
+         <th>Product Price</th>
+         <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="products.length===0">
+      <td colspan="5">please load data</td>
+    </tr>
+    <tr *ngFor='let p of products'>
+      <td>{{p.productCode}}</td>
+      <td>{{p.productName}}</td>
+      <td>{{p.category}}</td>
+       <td>{{p.price | currency:'INR'}}</td>
+       <td><button (click)=" deleteProduct(p.productCode)">Delte</button></td>
+       <td><button>Update</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
