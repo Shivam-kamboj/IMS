@@ -7,6 +7,7 @@ import { ProductService } from '../product.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  isedit:Boolean=false;
   products: any[] = []
   product = {
     productCode: '',
@@ -18,19 +19,35 @@ export class HomeComponent {
 
 
   constructor(private ps: ProductService) { }
-
-  if(isedit){
-
-    this.ps.addProduct(this.product).subscribe((res) => {
-      console.log(res)
-      this.products.push(res.product);
-    })
+  ngOnInit(){
+    this.getProducts();
+  }
+  reset(){
       this.product = {
         productCode: '',
         productName: '',
         category: '',
         price: null
       }
+      this.isedit=false;
+  }
+
+    addproduct(){
+      if(!this.isedit){
+
+    this.ps.addProduct(this.product).subscribe((res) => {
+      console.log(res)
+      // this.products.push(res.product);
+         this.getProducts();
+    })
+    
+    }else{
+      this.ps.updateProduct(this.product.productCode,this.product).subscribe((res)=>{
+             console.log(res)
+            this.getProducts();
+      })
+   
+    }
   }
   
 
