@@ -32,7 +32,7 @@ export class HomeComponent {
       this.isedit=false;
   }
 
-    addproduct(){
+    submit(){
       if(!this.isedit){
 
     this.ps.addProduct(this.product).subscribe((res) => {
